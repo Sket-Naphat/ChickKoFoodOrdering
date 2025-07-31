@@ -32,7 +32,7 @@ window.onload = getMenu;
 
 $(document).ready(function () {
 
-    $("#menuList , #menufriedChickenList, #menuMealList, #menuSnackList, #menuToppingList, #menuDessertList, #menuBeverageList").on("click", ".add-to-cart", function () {
+    $("#menuList , #menufriedChickenList, #menuMealList, #menuNoodleList, #menuSnackList, #menuToppingList, #menuDessertList, #menuBeverageList").on("click", ".add-to-cart", function () {
         const id = $(this).data("id");
         const name = $(this).data("name");
         const price = $(this).data("price");
@@ -156,6 +156,7 @@ function displayMenu(menuData) {
     const allMenuContainer = document.getElementById("menuList");
     const menufriedChickenContainer = document.getElementById("menufriedChickenList");
     const menuMealContainer = document.getElementById("menuMealList");
+    const menuNoodleContainer = document.getElementById("menuNoodleList");
     const menuSnackContainer = document.getElementById("menuSnackList");
     const menuToppingContainer = document.getElementById("menuToppingList");
     const menuDessertContainer = document.getElementById("menuDessertList");
@@ -165,6 +166,7 @@ function displayMenu(menuData) {
     allMenuContainer.innerHTML = "";
     menufriedChickenContainer.innerHTML = "";
     menuMealContainer.innerHTML = "";
+    menuNoodleContainer.innerHTML = "";
     menuSnackContainer.innerHTML = "";
     menuToppingContainer.innerHTML = "";
     menuDessertContainer.innerHTML = "";
@@ -210,6 +212,8 @@ function displayMenu(menuData) {
             menufriedChickenContainer.appendChild(menuItem.cloneNode(true));
         } else if (item.category === 'Meal') {
             menuMealContainer.appendChild(menuItem.cloneNode(true));
+        } else if (item.category === 'Noodle') {
+            menuNoodleContainer.appendChild(menuItem.cloneNode(true));
         } else if (item.category === 'Snack') {
             menuSnackContainer.appendChild(menuItem.cloneNode(true));
         } else if (item.category === 'Topping') {

@@ -82,6 +82,9 @@
             <a class="nav-link" id="meal-tab" data-bs-toggle="tab" href="#meal" role="tab" aria-controls="meal" aria-selected="false">กินจริงจัง</a>
         </li>
         <li class="nav-item" role="presentation">
+            <a class="nav-link" id="noodle-tab" data-bs-toggle="tab" href="#noodle" role="tab" aria-controls="noodle" aria-selected="false">เมนูเส้น</a>
+        </li>
+        <li class="nav-item" role="presentation">
             <a class="nav-link" id="snack-tab" data-bs-toggle="tab" href="#snack" role="tab" aria-controls="snack" aria-selected="false">ของทานเล่น</a>
         </li>
         <li class="nav-item" role="presentation">
@@ -134,7 +137,15 @@
             </div>
           </section>
         </div>
-       
+       <div class="tab-pane fade" id="noodle" role="tabpanel" aria-labelledby="noodle-tab">
+          <section class="py-2">
+            <div class="container px-4 px-lg-5 mt-5">
+              <div id="editMenuNoodleList" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <!-- สินค้า -->
+              </div>
+            </div>
+          </section>
+        </div>
         <div class="tab-pane fade" id="snack" role="tabpanel" aria-labelledby="snack-tab">
           <section class="py-2">
             <div class="container px-4 px-lg-5 mt-5">
@@ -219,6 +230,7 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true" role="dialog" aria-moda
           <select class="form-select" id="editMenuCategory" name="category">
             <option value="FriedChicken">ไก่ทอด</option>
             <option value="Meal">กินจริงจัง</option>
+            <option value="Noodle">เมนูเส้น</option>
             <option value="Snack">ของทานเล่น</option>
             <option value="Topping">Topping</option>
             <option value="Dessert">ของหวาน</option>
@@ -288,6 +300,7 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true" role="dialog" aria-moda
             <select class="form-select" id="addMenuCategory" name="category">
               <option value="FriedChicken">ไก่ทอด</option>
               <option value="Meal">กินจริงจัง</option>
+              <option value="Noodle">เมนูเส้น</option>
               <option value="Snack">ของทานเล่น</option>
               <option value="Topping">Topping</option>
               <option value="Dessert">ของหวาน</option>

@@ -30,7 +30,7 @@ const cardQTY = document.getElementById("cardQTY");
 window.onload = getMenu;
 
 $(document).ready(function () { 
-    $("#editMenuList, #editMenufriedChickenList, #editMenuMealList, #editMenuSnackList, #editMenuToppingList, #editMenuDessertList, #editMenuBeverageList").on("click", ".btn-edit-item", function () {
+    $("#editMenuList, #editMenufriedChickenList, #editMenuMealList, #editMenuNoodleList, #editMenuSnackList, #editMenuToppingList, #editMenuDessertList, #editMenuBeverageList").on("click", ".btn-edit-item", function () {
         // ดึงข้อมูลจาก data-* attributes
         const id = $(this).data("id");
         const name = $(this).data("name");
@@ -175,6 +175,7 @@ function displayMenu(menuData) {
     const allMenuContainer = document.getElementById("editMenuList");
     const menufriedChickenContainer = document.getElementById("editMenufriedChickenList");
     const menuMealContainer = document.getElementById("editMenuMealList");
+    const menuNoodleContainer = document.getElementById("editMenuNoodleList");
     const menuSnackContainer = document.getElementById("editMenuSnackList");
     const menuToppingContainer = document.getElementById("editMenuToppingList");
     const menuDessertContainer = document.getElementById("editMenuDessertList");
@@ -184,6 +185,7 @@ function displayMenu(menuData) {
     allMenuContainer.innerHTML = "";
     menufriedChickenContainer.innerHTML = "";
     menuMealContainer.innerHTML = "";
+    menuNoodleContainer.innerHTML = "";
     menuSnackContainer.innerHTML = "";
     menuToppingContainer.innerHTML = "";
     menuDessertContainer.innerHTML = "";
@@ -231,6 +233,8 @@ function displayMenu(menuData) {
             menufriedChickenContainer.appendChild(menuItem.cloneNode(true));
         } else if (item.category === 'Meal') {
             menuMealContainer.appendChild(menuItem.cloneNode(true));
+        } else if (item.category === 'Noodle') {
+            menuNoodleContainer.appendChild(menuItem.cloneNode(true));
         } else if (item.category === 'Snack') {
             menuSnackContainer.appendChild(menuItem.cloneNode(true));
         } else if (item.category === 'Topping') {
