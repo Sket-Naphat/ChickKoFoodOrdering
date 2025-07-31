@@ -187,32 +187,61 @@ $(document).ready(function () {
     
 
      $('#btn_insertDataToChickkoDB').on('click', async function () {
-        //call api to insert data to chickko db
+
+         $("#loginApiModel").modal("show");
+
+     });
+
+
+    $('#btn_loginApi').on('click', async function () {
         const selectedDate = $('#dateInput').val();
         if (!selectedDate) {
-            alert('กรุณาเลือกวันที่');
+            alert("กรุณาเลือกวันที่");
             return;
         }
-        //get token from https://chickkoapi.up.railway.app/api/auth/login 
-        const response = await fetch('https://chickkoapi.up.railway.app/api/auth/login'
-        // const response = await fetch('http://localhost:5036/api/auth/login'
-        //const response = await fetch('http://127.0.0.1:5036/api/auth/login'
-        , {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: 'sket',
-                password: 'ManU@7'
-            })
-        });
-        const data = await response.json();
-        const token = data.token;
-        if (!token) {
-            alert('ไม่สามารถเข้าสู่ระบบได้');
-            return;
+
+        const username = $("#username").val();
+        const password = $("#password").val();
+
+        try {
+            //get token from https://chickkoapi.up.railway.app/api/auth/login 
+            const response = await fetch('https://chickkoapi.up.railway.app/api/auth/login'
+            // const response = await fetch('http://localhost:5036/api/auth/login'
+            //const response = await fetch('http://127.0.0.1:5036/api/auth/login'
+            //const response = await fetch('http://localhost:5036/api/auth/login'
+             , {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (!response.ok) {
+                alert(`❌ ล็อกอินไม่สำเร็จ: ${response.status} ${response.statusText}`);
+                return;
+            }
+
+            const data = await response.json();
+            const token = data.token;
+
+            if (!token) {
+                alert("❌ ไม่สามารถเข้าสู่ระบบได้ (ไม่มี token)");
+                return;
+            }
+
+            alert("✅ ล็อกอินสำเร็จ");
+            await updateChickkoDB(token); // ฟังก์ชันที่คุณเรียกต่อ
+
+        } catch (err) {
+            alert("เกิดข้อผิดพลาด: " + err.message);
+            console.error(err);
         }
+    });
+
+});
+
+async function updateChickkoDB (token){
 
         //alert('กำลังบันทึกข้อมูลไปยังฐานข้อมูลหลัก กรุณารอสักครู่... ' + token);  
         //call api http://localhost:5036/api/orders/CopyOrderFromFirestore with token and data OrderDateFrom
@@ -231,9 +260,8 @@ $(document).ready(function () {
         });
         const apiData = await apiResponse.json();
         if (apiData.success) {
-            alert('บันทึกข้อมูลสำเร็จ');
+            alert('บันทึกข้อมูลสำเร็จ : ' + success );
         } else {
             alert('เกิดข้อผิดพลาดในการบันทึกข้อมูล: ' + apiData.message);
         }
-     });
-});
+}
