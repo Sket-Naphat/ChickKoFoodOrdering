@@ -66,6 +66,9 @@ $(document).ready(function () {
                 timerProgressBar: true,
                 showConfirmButton: false
             }).then(() => {
+                // รีเซ็ต userIsInteracting เพื่อให้ระบบรีเฟรชข้อมูลได้
+                userIsInteracting = false;
+                
                 // โหลดข้อมูลใหม่หลังจากอัปเดต
                 getCurrentOrder();  // ฟังก์ชันที่โหลดรายการคำสั่งซื้อใหม่
             });
@@ -118,6 +121,9 @@ $(document).ready(function () {
                     timerProgressBar: true,
                     showConfirmButton: false
                 }).then(() => {
+                    // รีเซ็ต userIsInteracting เพื่อให้ระบบรีเฟรชข้อมูลได้
+                    userIsInteracting = false;
+                    
                     // ปิด modal
                     // โหลดข้อมูลใหม่
                     getCurrentOrder();
@@ -168,6 +174,9 @@ $(document).ready(function () {
                 timerProgressBar: true,
                 showConfirmButton: false
             }).then(() => {
+                // รีเซ็ต userIsInteracting เพื่อให้ระบบรีเฟรชข้อมูลได้
+                userIsInteracting = false;
+                
                 // โหลดข้อมูลใหม่หลังจากอัปเดต
                 getCurrentOrder();  // ฟังก์ชันที่โหลดรายการคำสั่งซื้อใหม่
             });
@@ -303,7 +312,9 @@ $(document).ready(function () {
                             modalInstance2.hide();
                         }
 
-
+                        // รีเซ็ต userIsInteracting เพื่อให้ระบบรีเฟรชข้อมูลได้
+                        userIsInteracting = false;
+                        
                         // โหลดข้อมูลใหม่
                         getCurrentOrder();
                     });
@@ -363,7 +374,9 @@ $(document).ready(function () {
                             modalInstance2.hide();
                         }
 
-
+                        // รีเซ็ต userIsInteracting เพื่อให้ระบบรีเฟรชข้อมูลได้
+                        userIsInteracting = false;
+                        
                         // โหลดข้อมูลใหม่
                         getCurrentOrder();
                     });
@@ -519,6 +532,9 @@ $(document).ready(function () {
                 timerProgressBar: true,
                 showConfirmButton: false
             }).then(() => {
+                // รีเซ็ต userIsInteracting เพื่อให้ระบบรีเฟรชข้อมูลได้
+                userIsInteracting = false;
+                
                 // โหลดข้อมูลใหม่หลังจากอัปเดต
                 getCurrentOrder();  // ฟังก์ชันที่โหลดรายการคำสั่งซื้อใหม่
             });
@@ -535,7 +551,7 @@ $(document).ready(function () {
 
 
 
-    $("#menuList , #menufriedChickenList, #menuMealList, #menuSnackList, #menuToppingList, #menuDessertList, #menuBeverageList").on("click", ".add-to-cart", function () {
+    $("#menuList , #menufriedChickenList, #menuMealList, #menuNoodleList, #menuSnackList, #menuToppingList, #menuDessertList, #menuBeverageList").on("click", ".add-to-cart", function () {
         const id = $(this).data("id");
         const name = $(this).data("name");
         const price = $(this).data("price");
@@ -711,6 +727,9 @@ $(document).ready(function () {
                 timerProgressBar: true,
                 showConfirmButton: false
             }).then(() => {
+                // รีเซ็ต userIsInteracting เพื่อให้ระบบรีเฟรชข้อมูลได้
+                userIsInteracting = false;
+                
                 // โหลดข้อมูลใหม่หลังจากอัปเดต
                 getCurrentOrder();  // ฟังก์ชันที่โหลดรายการคำสั่งซื้อใหม่
             });
@@ -1094,6 +1113,7 @@ function displayMenu(menuData) {
     const menuToppingContainer = document.getElementById("menuToppingList");
     const menuDessertContainer = document.getElementById("menuDessertList");
     const menuBeverageContainer = document.getElementById("menuBeverageList");
+    const menuNoodleContainer = document.getElementById("menuNoodleList");
 
     // ล้างเนื้อหาเก่าก่อนเพิ่มใหม่
     allMenuContainer.innerHTML = "";
@@ -1103,6 +1123,7 @@ function displayMenu(menuData) {
     menuToppingContainer.innerHTML = "";
     menuDessertContainer.innerHTML = "";
     menuBeverageContainer.innerHTML = "";
+    menuNoodleContainer.innerHTML = "";
 
     // วนลูปผ่านข้อมูลเมนู
     menuData.forEach(item => {
@@ -1135,6 +1156,8 @@ function displayMenu(menuData) {
             menufriedChickenContainer.appendChild(menuItem.cloneNode(true));
         } else if (item.category === 'Meal') {
             menuMealContainer.appendChild(menuItem.cloneNode(true));
+        } else if (item.category === 'Noodle') {
+            menuNoodleContainer.appendChild(menuItem.cloneNode(true));
         } else if (item.category === 'Snack') {
             menuSnackContainer.appendChild(menuItem.cloneNode(true));
         } else if (item.category === 'Topping') {
