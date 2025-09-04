@@ -1,23 +1,9 @@
-// Import the necessary Firebase SDKs
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
-import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js"; // แก้ไขจากการนำเข้าผิดที่
+// Import Firebase functions and centralized config
+import { collection, getDocs, addDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js";
+import { app, db } from './firebaseConfig.js';
 
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-// Your Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyB2v4UuQABJJc9VxA5YKSDoeEpY00NE8Tw",
-    authDomain: "chickkoapp.firebaseapp.com",
-    projectId: "chickkoapp",
-    storageBucket: "chickkoapp.firebasestorage.app",
-    messagingSenderId: "94867797048",
-    appId: "1:94867797048:web:954a36ceacbcbbc5fbe2cd",
-    measurementId: "G-8VPWXNX4SS"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 const storage = getStorage(app); // กำหนด storage ตัวนี้สำหรับใช้งาน Firebase Storage
 // const analytics = getAnalytics(app);
 const cartItems = [];
