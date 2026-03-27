@@ -200,8 +200,11 @@ function displayMenu(menuData) {
         const menuItem = document.createElement("div");
         menuItem.className = "col mb-5 position-relative";
 
+        // เพิ่ม class สำหรับ active = false
+        const cardBgClass = item.active === false ? 'bg-danger bg-opacity-25' : 'bg-success bg-opacity-25';
+
         menuItem.innerHTML = `
-          <div class="card h-100">
+          <div class="card h-100 ${cardBgClass}">
             <img class="card-img-top custom-img" src="${imgMenu}" alt="${item.name}" />
             <div class="card-body p-2">
               <div class="text-center">

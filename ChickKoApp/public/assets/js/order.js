@@ -806,6 +806,27 @@ $(document).ready(function () {
             userIsInteracting = false;
         }, 3000); // รอเผื่อว่าผู้ใช้จะคลิกต่อ
     });
+
+    // Lucky Draw Button Event Handler
+    $("#currentOrderPanels").on("click", ".lucky-draw-btn", function() {
+        const customerName = $(this).data("customer");
+        const orderId = $(this).data("order-id");
+        
+        // สร้าง URL สำหรับสุ่มรางวัล
+        const luckyDrawUrl = `https://chickko-pos.vercel.app/rolling-game?CustomerName=${encodeURIComponent(customerName)}&OrderId=${orderId}&site=HKT`;
+        
+        // เปิดลิงก์ในแท็บใหม่
+        window.open(luckyDrawUrl, '_blank');
+        
+        // แสดงข้อความยืนยัน
+        Swal.fire({
+            title: 'เปิดหน้าสุ่มรางวัลแล้ว!',
+            text: 'กดที่หน้าต่างใหม่เพื่อเข้าร่วมกิจกรรม',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    });
     
 });
 // async function getCurrentOrder() {
@@ -1047,6 +1068,29 @@ function displayCurrnetOrder(orderData) {
                     </div>
                     
                     <br>
+                    
+                    <!-- ปุ่มสุ่มรางวัล - แสดงเมื่อยอดเกิน 300 บาทและไม่ใช่ Grab -->
+                    ${(() => {
+                        const orderTotal = item.items.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+                        const finalTotal = item.discountApplied ? orderTotal * 0.9 : orderTotal;
+                        
+                        if (finalTotal > 300 && item.locationOrder !== 'Grab') {
+                            return `
+                                <div class="text-center mb-3">
+                                    <div class="alert alert-success mb-2">
+                                        <i class="bi bi-gift-fill"></i> ยอดรวม ${finalTotal.toFixed(2)} บาท - คุณสามารถเข้าร่วมกิจกรรมสุ่มรางวัลได้!
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-lg lucky-draw-btn" 
+                                            data-customer="${item.customerName}" 
+                                            data-order-id="${item.id}">
+                                        🎁 สุ่มรางวัล
+                                    </button>
+                                </div>
+                            `;
+                        }
+                        return '';
+                    })()}
+                    
                     <div class="d-flex justify-content-between align-items-center">
                         <button type="button" class="btn btn-danger btn-update-delete" data-id="${item.id}">ลบ order</button>
                         <div>
